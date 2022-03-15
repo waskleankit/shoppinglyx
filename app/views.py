@@ -54,6 +54,40 @@ def mobile(request,data = None):
   mobiles = Product.objects.filter(category='M').filter(discounted_price__gt = 10000)
  return render(request, 'app/mobile.html',{'mobiles':mobiles})
 
+def laptop(request,data = None):
+ if data == None:
+  laptops = Product.objects.filter(category='L')
+ elif data=='Apple' or data =='Dell' or data =='Hp' or data =='Lg':
+  laptops = Product.objects.filter(category='L').filter(brand=data)
+ elif data == 'below':
+  laptops = Product.objects.filter(category='L').filter(discounted_price__lt = 10000)
+ elif data == 'above':
+  laptops = Product.objects.filter(category='L').filter(discounted_price__gt = 10000)
+ return render(request, 'app/laptop.html',{'laptops':laptops})
+
+def topwear(request,data = None):
+ if data == None:
+  topwears = Product.objects.filter(category='TW')
+ elif data=='brandname4' or data =='brandname3' or data =='brandname' or data =='brandname6' or data =='brandname5' or data =='brandname1':
+  topwears = Product.objects.filter(category='TW').filter(brand=data)
+ elif data == 'below':
+  topwears = Product.objects.filter(category='TW').filter(discounted_price__lt = 10000)
+ elif data == 'above':
+  topwears = Product.objects.filter(category='TW').filter(discounted_price__gt = 10000)
+ return render(request, 'app/topwear.html',{'topwears':topwears})
+
+def bottomwear(request,data = None):
+ if data == None:
+  bottomwears = Product.objects.filter(category='BW')
+ elif data=='Lee' or data =='Levis' or data =='BlueBuddha' or data =='brandname3' or data =='banrandname4' or data =='brandname5':
+  bottomwears = Product.objects.filter(category='BW').filter(brand=data)
+ elif data == 'below':
+  bottomwears = Product.objects.filter(category='BW').filter(discounted_price__lt = 10000)
+ elif data == 'above':
+  bottomwears = Product.objects.filter(category='BW').filter(discounted_price__gt = 10000)
+ return render(request, 'app/bottomwear.html',{'bottomwears':bottomwears})
+
+
 def login(request):
  return render(request, 'app/login.html')
 

@@ -5,7 +5,8 @@ from django.conf.urls.static import static
 from django.contrib.auth import views as auth_views
 from .forms import LoginForm,\
     MyPasswordChangeForm,\
-    MyPasswordResetForm
+    MyPasswordResetForm, \
+    MySetPasswordForm
 
 urlpatterns = [
     # path('', views.home),
@@ -19,6 +20,12 @@ urlpatterns = [
     # path('changepassword/', views.change_password, name='changepassword'),
     path('mobile/', views.mobile, name='mobile'),
     path('mobile/<slug:data>', views.mobile, name='mobiledata'),
+    path('laptop/', views.laptop, name='laptop'),
+    path('laptop/<slug:data>', views.laptop, name='laptopdata'),
+    path('topwear/', views.topwear, name='topwear'),
+    path('topwear/<slug:data>', views.topwear, name='topweardata'),
+    path('bottomwear/', views.bottomwear, name='bottomwear'),
+    path('bottomwear/<slug:data>', views.bottomwear, name='bottomweardata'),
 
 
 
@@ -35,7 +42,9 @@ urlpatterns = [
     # path('password-reset/',auth_views.PasswordResetView.as_view(template_name='app/password_reset.html'),name='password_reset'),
 
     path('password-reset/', auth_views.PasswordResetView.as_view(template_name="app/password_reset.html",form_class=MyPasswordResetForm), name='password_reset'),
+    path('password-reset-confirm/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(template_name="app/password_reset_confirm.html",form_class=MySetPasswordForm), name='password_reset_confirm'),
     path('password-reset/done/', auth_views.PasswordResetDoneView.as_view(template_name="app/password_reset_done.html"), name='password_reset_done'),
+    path('password-reset-complete/', auth_views.PasswordResetCompleteView.as_view(template_name="app/password_reset_confirm.html"), name='password_reset_confirm'),
     path('registration/', views.CustomerRegistrationView.as_view(), name='customerregistration'),
     path('checkout/', views.checkout, name='checkout'),
 ] + static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

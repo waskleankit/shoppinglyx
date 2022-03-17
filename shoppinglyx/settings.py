@@ -81,6 +81,16 @@ DATABASES = {
     }
 }
 
+# DATABASES={
+#    'default':{
+#       'ENGINE':'django.db.backends.postgresql_psycopg2',
+#       'NAME':'ecpshoppinglyx',
+#       'USER':'ankitecp',
+#       'PASSWORD':'ankit2073',
+#       'HOST':'localhost',
+#       'PORT':'5432',
+#    }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators

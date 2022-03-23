@@ -141,7 +141,7 @@ CSRF_TRUSTED_ORIGINS = ['https://waskleshoppinglyx.herokuapp.com/']
 
 CORS_REPLACE_HTTPS_REFERER = True
 
-CSRF_COOKIE_DOMAIN = 'bluemix.net'
+CSRF_COOKIE_DOMAIN = 'herokuapp.com'
 
 CORS_ORIGIN_WHITELIST = (
     'https://waskleshoppinglyx.herokuapp.com/',

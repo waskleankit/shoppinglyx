@@ -10,19 +10,25 @@ from django.http import JsonResponse
 
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
+
+
+
+
+
 # def home(request):
 #  return render(request, 'app/home.html')
 class ProductView(View):
  def get(self,request):
+  totalitem = 0
   topwears = Product.objects.filter(category='TW')
   bottomwears = Product.objects.filter(category='BW')
   mobiles = Product.objects.filter(category='M')
   laptop = Product.objects.filter(category='L')
-  return render(request,'app/home.html',
-                {'topwears': topwears,
-                 'bottomwears' : bottomwears,
-                 'mobiles' : mobiles,
-                 'laptop': laptop })
+  totalitem = 0
+  if request.user.is_authenticated:
+   totalitem = len(Cart.objects.filter(user=request.user))
+  context = {'topwears': topwears,'bottomwears' : bottomwears,'mobiles' : mobiles,'laptop': laptop,'totalitem':totalitem}
+  return render(request,'app/home.html',context)
 
 # def product_detail(request):
 #  return render(request, 'app/productdetail.html')
@@ -30,9 +36,11 @@ class ProductDetailView(View):
  def get(self,request,pk):
   product = Product.objects.get(pk=pk)
   item_already_in_cart = False
+  totalitem = 0
   if request.user.is_authenticated:
+   totalitem = len(Cart.objects.filter(user=request.user))
    item_already_in_cart = Cart.objects.filter(Q(product=product.id) & Q(user=request.user)).exists()
-  context = {'product':product,'item_already_in_cart':item_already_in_cart}
+  context = {'totalitem':totalitem,'product':product,'item_already_in_cart':item_already_in_cart}
   return render(request,'app/productdetail.html',context)
 
 @login_required
@@ -54,14 +62,17 @@ def show_cart(request):
   total_amount = 0.0
   cart_product = [p for p in Cart.objects.all() if p.user == user]
   # print(cart_product)
+  totalitem = 0
+  if request.user.is_authenticated:
+   totalitem = len(Cart.objects.filter(user=request.user))
   if cart_product:
    for p in cart_product:
     tempamount = (p.quantity * p.product.discounted_price)
     amount += tempamount
     total_amount = amount + shipping_amount
-   return render(request, 'app/addtocart.html',{'carts':cart,'total_amount':total_amount,'amount' : amount})
+   return render(request, 'app/addtocart.html',{'totalitem':totalitem,'carts':cart,'total_amount':total_amount,'amount' : amount})
   else:
-   return render(request,'app/emptycart.html')
+   return render(request,'app/emptycart.html',{'totalitem' : totalitem})
 
 def plus_cart(request):
  if request.method == 'GET':
@@ -137,7 +148,11 @@ def buy_now(request):
 @login_required
 def address(request):
  add = Customer.objects.filter(user=request.user)
- return render(request, 'app/address.html',{'add':add,'active':'btn-primary'})
+ totalitem = 0
+ if request.user.is_authenticated:
+  totalitem = len(Cart.objects.filter(user=request.user))
+ context = {'add': add, 'active': 'btn-primary', 'totalitem': totalitem}
+ return render(request, 'app/address.html',context)
 
 
 
@@ -153,7 +168,10 @@ def mobile(request,data = None):
   mobiles = Product.objects.filter(category='M').filter(discounted_price__lt = 10000)
  elif data == 'above':
   mobiles = Product.objects.filter(category='M').filter(discounted_price__gt = 10000)
- return render(request, 'app/mobile.html',{'mobiles':mobiles})
+ totalitem = 0
+ if request.user.is_authenticated:
+  totalitem = len(Cart.objects.filter(user=request.user))
+ return render(request, 'app/mobile.html',{'mobiles':mobiles,'totalitem':totalitem})
 
 def laptop(request,data = None):
  if data == None:
@@ -164,7 +182,10 @@ def laptop(request,data = None):
   laptops = Product.objects.filter(category='L').filter(discounted_price__lt = 10000)
  elif data == 'above':
   laptops = Product.objects.filter(category='L').filter(discounted_price__gt = 10000)
- return render(request, 'app/laptop.html',{'laptops':laptops})
+ totalitem = 0
+ if request.user.is_authenticated:
+  totalitem = len(Cart.objects.filter(user=request.user))
+ return render(request, 'app/laptop.html',{'laptops':laptops,'totalitem':totalitem})
 
 def topwear(request,data = None):
  if data == None:
@@ -175,7 +196,10 @@ def topwear(request,data = None):
   topwears = Product.objects.filter(category='TW').filter(discounted_price__lt = 10000)
  elif data == 'above':
   topwears = Product.objects.filter(category='TW').filter(discounted_price__gt = 10000)
- return render(request, 'app/topwear.html',{'topwears':topwears})
+ totalitem = 0
+ if request.user.is_authenticated:
+  totalitem = len(Cart.objects.filter(user=request.user))
+ return render(request, 'app/topwear.html',{'topwears':topwears,'totalitem':totalitem})
 
 def bottomwear(request,data = None):
  if data == None:
@@ -186,7 +210,10 @@ def bottomwear(request,data = None):
   bottomwears = Product.objects.filter(category='BW').filter(discounted_price__lt = 10000)
  elif data == 'above':
   bottomwears = Product.objects.filter(category='BW').filter(discounted_price__gt = 10000)
- return render(request, 'app/bottomwear.html',{'bottomwears':bottomwears})
+ totalitem = 0
+ if request.user.is_authenticated:
+  totalitem = len(Cart.objects.filter(user=request.user))
+ return render(request, 'app/bottomwear.html',{'bottomwears':bottomwears,'totalitem':totalitem})
 
 
 # def login(request):
@@ -217,11 +244,15 @@ def checkout(request):
  if cart_product:
   for p in cart_product:
    tempamount = (p.quantity * p.product.discounted_price)
-   print(tempamount)
+   # print(tempamount)
    amount += tempamount
-   print(amount)
+   # print(amount)
   totalamount = amount + shipping_amount
-  print(totalamount)
+  # print(totalamount)
+ # totalitem = 0
+ # if request.user.is_authenticated:
+ #  totalitem = len(Cart.objects.filter(user=request.user))
+ # context = {'totalitem':totalitem,'add':add,'totalamount':totalamount,'cart_items':cart_items}
  context = {'add':add,'totalamount':totalamount,'cart_items':cart_items}
  return render(request, 'app/checkout.html',context)
 
@@ -239,14 +270,20 @@ def payment_done(request):
 @login_required
 def orders(request):
  op = OrderPlaced.objects.filter(user=request.user)
- context = {'order_placed':op}
+ totalitem = 0
+ if request.user.is_authenticated:
+  totalitem = len(Cart.objects.filter(user=request.user))
+ context = {'order_placed':op,'totalitem':totalitem}
  return render(request, 'app/orders.html',context)
 
 @method_decorator(login_required, name='dispatch')
 class ProfileView(View):
  def get(self,request):
   form = CustomerProfileForm()
-  return render(request,'app/profile.html',{'form':form,'active':'btn-primary'})
+  totalitem = 0
+  if request.user.is_authenticated:
+   totalitem = len(Cart.objects.filter(user=request.user))
+  return render(request,'app/profile.html',{'totalitem':totalitem,'form':form,'active':'btn-primary'})
 
  def post(self,request):
   form = CustomerProfileForm(request.POST)
@@ -260,5 +297,8 @@ class ProfileView(View):
    reg = Customer(user=usr,name=name,locality=locality,city=city,state=state,zipcode=zipcode)
    reg.save()
    messages.success(request,'Congradulations!! Profile Updated Successfully')
-  return render(request,'app/profile.html',{'form':form,'active':'btn-primary'})
+  totalitem = 0
+  if request.user.is_authenticated:
+   totalitem = len(Cart.objects.filter(user=request.user))
+  return render(request,'app/profile.html',{'totalitem':totalitem,'form':form,'active':'btn-primary'})
 

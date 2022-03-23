@@ -90,7 +90,7 @@ DATABASES = {
 #       'HOST':'localhost',
 #       'PORT':'5432',
 #    }
-# }
+# }+
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
@@ -136,3 +136,5 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+
+# SESSION_ENGINE = "django.contrib.sessions.backends.db"

@@ -145,8 +145,8 @@ CSRF_COOKIE_DOMAIN = 'bluemix.net'
 
 CORS_ORIGIN_WHITELIST = (
     'https://waskleshoppinglyx.herokuapp.com/',
-    'front.bluemix.net',
-    'bluemix.net',
+    'waskleshoppinglyx.herokuapp.com',
+    'herokuapp.com',
 )
 
 

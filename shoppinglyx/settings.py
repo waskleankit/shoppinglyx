@@ -23,6 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ['SECRET_KEY']
+# SECRET_KEY = ["django-insecure-&zja@0$t==cold+x4m%&ob)!vcm!i(3!-n3$j4p5d2rrgz!l3h"]
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -78,23 +79,23 @@ WSGI_APPLICATION = 'shoppinglyx.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 
-# DATABASES={
-#    'default':{
-#       'ENGINE':'django.db.backends.postgresql_psycopg2',
-#       'NAME':'ecpshoppinglyx',
-#       'USER':'ankitecp',
-#       'PASSWORD':'ankit2073',
-#       'HOST':'localhost',
-#       'PORT':'5432',
-#    }
-# }+
+DATABASES={
+   'default':{
+      'ENGINE':'django.db.backends.postgresql_psycopg2',
+      'NAME':'ecpshoppinglyx',
+      'USER':'ankitecp',
+      'PASSWORD':'ankit2073',
+      'HOST':'localhost',
+      'PORT':'5432',
+   }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators

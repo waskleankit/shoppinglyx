@@ -222,7 +222,6 @@ def bottomwear(request,data = None):
 # def customerregistration(request):
 #  return render(request, 'app/customerregistration.html')
 # @csrf_exempt
-#hjh
 class CustomerRegistrationView(View):
  def get(self,request):
   form = CustomerRegistrationForm()

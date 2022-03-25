@@ -224,7 +224,8 @@ def bottomwear(request,data = None):
 class CustomerRegistrationView(View):
  def get(self,request):
   form = CustomerRegistrationForm()
-  return render(request,'app/customerregistration.html',{'form':form})
+  context = {'form':form}
+  return render(request,'app/customerregistration.html',context)
  def post(self,request):
   form = CustomerRegistrationForm(request.POST)
   if form.is_valid():

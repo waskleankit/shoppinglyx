@@ -131,24 +131,24 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-CORS_ALLOW_CREDENTIALS = True
-
-CORS_ORIGIN_ALLOW_ALL = True
-
-CORS_ALLOW_CREDENTIALS = True
-
-
-CSRF_TRUSTED_ORIGINS = ['https://waskleshoppinglyx.herokuapp.com']
-
-CORS_REPLACE_HTTPS_REFERER = True
-
-CSRF_COOKIE_DOMAIN = 'herokuapp.com'
-
-CORS_ORIGIN_WHITELIST = (
-    'https://waskleshoppinglyx.herokuapp.com/',
-    'waskleshoppinglyx.herokuapp.com',
-    'herokuapp.com',
-)
+# CORS_ALLOW_CREDENTIALS = True
+#
+# CORS_ORIGIN_ALLOW_ALL = True
+#
+# CORS_ALLOW_CREDENTIALS = True
+#
+#
+# CSRF_TRUSTED_ORIGINS = ['https://waskleshoppinglyx.herokuapp.com']
+#
+# CORS_REPLACE_HTTPS_REFERER = True
+#
+# CSRF_COOKIE_DOMAIN = 'herokuapp.com'
+#
+# CORS_ORIGIN_WHITELIST = (
+#     'https://waskleshoppinglyx.herokuapp.com/',
+#     'waskleshoppinglyx.herokuapp.com',
+#     'herokuapp.com',
+# )
 
 
 

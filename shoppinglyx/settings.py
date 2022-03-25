@@ -91,7 +91,7 @@ DATABASES={
       'NAME':'ecpshoppinglyx',
       'USER':'ankitecp',
       'PASSWORD':'ankit2073',
-      'HOST':'localhost',
+      'HOST':'waskleshoppinglyx.herokuapp.com',
       'PORT':'5432',
    }
 }

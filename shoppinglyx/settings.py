@@ -88,10 +88,10 @@ WSGI_APPLICATION = 'shoppinglyx.wsgi.application'
 DATABASES={
    'default':{
       'ENGINE':'django.db.backends.postgresql_psycopg2',
-      'NAME':'ecpshoppinglyx',
-      'USER':'ankitecp',
-      'PASSWORD':'ankit2073',
-      'HOST':'waskleshoppinglyx.herokuapp.com',
+      'NAME':'da2h2gcb7tr98c',
+      'USER':'uvxxtejrrqqggk',
+      'PASSWORD':'@nkit2073',
+      'HOST':'ec2-3-229-161-70.compute-1.amazonaws.com'
       'PORT':'5432',
    }
 }

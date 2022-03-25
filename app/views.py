@@ -11,7 +11,7 @@ from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 
-
+from django.views.decorators.csrf import csrf_exempt
 
 
 
@@ -221,6 +221,7 @@ def bottomwear(request,data = None):
 
 # def customerregistration(request):
 #  return render(request, 'app/customerregistration.html')
+@csrf_exempt
 class CustomerRegistrationView(View):
  def get(self,request):
   form = CustomerRegistrationForm()

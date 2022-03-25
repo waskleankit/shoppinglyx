@@ -91,7 +91,7 @@ DATABASES={
       'NAME':'da2h2gcb7tr98c',
       'USER':'uvxxtejrrqqggk',
       'PASSWORD':'@nkit2073',
-      'HOST':'ec2-3-229-161-70.compute-1.amazonaws.com'
+      'HOST':'ec2-3-229-161-70.compute-1.amazonaws.com',
       'PORT':'5432',
    }
 }

@@ -291,7 +291,7 @@ class ProfileView(View):
    prev_customer =len(Customer.objects.filter(user=request.user))
    print(prev_customer)
    if (prev_customer >= 1):
-    return render(request, 'app/home.html', {'totalitem':totalitem})
+    return redirect("home")
   return render(request,'app/profile.html',{'totalitem':totalitem,'form':form,'active':'btn-primary'})
 
  def post(self,request):
@@ -309,5 +309,5 @@ class ProfileView(View):
   totalitem = 0
   if request.user.is_authenticated:
    totalitem = len(Cart.objects.filter(user=request.user))
-  return render(request,'app/home.html',{'totalitem':totalitem,'form':form,'active':'btn-primary'})
+  return redirect("home")
 

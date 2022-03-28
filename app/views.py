@@ -291,7 +291,7 @@ class ProfileView(View):
    prev_customer =len(Customer.objects.filter(user=request.user))
    print(prev_customer)
    if (prev_customer >= 1):
-    return render(request, 'app/home.html')
+    return render(request, 'app/home.html', {'totalitem':totalitem})
   return render(request,'app/profile.html',{'totalitem':totalitem,'form':form,'active':'btn-primary'})
 
  def post(self,request):

@@ -36,15 +36,20 @@
           <label class="form-check-label fw-bold" for="">
             Address: {{forloop.counter}} </label>
         </div>
-      {% endfor %}
+
 
         <div class="text-end">
           <div id="paypal-button-container"></div>
 
         </div>
-<!--        <button>continue</button>-->
+        {% endfor %}
 
       </form>
+
+        {% if add.count == 0 %}
+      <button> <a href="{% url 'profile' %}">Add Details First</a></button>
+        {% endif %}
+
     </div>
   </div>
 </div>

@@ -33,9 +33,22 @@
       </div>
         <div class="form-check mt-2 mb-5">
           <input class="form-check-input" type="radio" name="custid" id="custadd{{forloop.counter}}" value="{{ad.id}}">
-          <label onclick="myFunction()" class="form-check-label fw-bold" id="address-selected" for="">
+          <label onclick="show()" class="form-check-label fw-bold" id="btnID" for="">
             Address: {{forloop.counter}} </label>
         </div>
+
+<!--    <script>-->
+<!--        function show() {-->
+
+<!--            /* Access image by id and change-->
+<!--            the display property to block*/-->
+<!--            document.getElementById('btnID')-->
+<!--                    .style.display = "paypal-button";-->
+<!--        }-->
+<!--    </script>-->
+      <div class="text-end" >
+          <div id="paypal-button-container"></div>
+      </div>
 <!--<script>-->
 <!--function myFunction() {-->
 <!--        <div class="text-end">-->
@@ -50,9 +63,8 @@
 <!--</script>>-->
 <!--<script>-->
 <!--$('#address-selected').click(function() {-->
-        <div class="text-end">
-          <div id="paypal-button-container"></div>
-        </div>
+
+
 <!--    }-->
 <!--});-->
 <!--</script>-->
@@ -113,7 +125,13 @@
 
         }).render('#paypal-button-container');
     </script>
+    <style>
 
+        /* Set display to none for image*/
+        #paypal-button {
+            display: none;
+        }
+    </style>
 
 {% endblock payment-gateway %}
 

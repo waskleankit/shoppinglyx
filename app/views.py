@@ -37,10 +37,6 @@ class ProductView(View):
    bottomwears = Product.objects.filter(Q(Q(brand__contains=tag) | Q(title__contains=tag) | Q(description__contains=tag)) & Q(category='BW'))
    mobiles = Product.objects.filter(Q(Q(brand__contains=tag) | Q(title__contains=tag) | Q(description__contains=tag)) & Q(category='M'))
    laptop = Product.objects.filter(Q(Q(brand__contains=tag) | Q(title__contains=tag) | Q(description__contains=tag)) & Q(category='L'))
-   print(topwear)
-   print(bottomwears)
-   print(mobiles)
-   print(laptop)
     # posts = Posts.objects.filter(user_id=userid).all()
    # .paginate(page=page, per_page=ROWS_PER_PAGE)
    totalitem = 0

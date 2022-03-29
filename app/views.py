@@ -43,7 +43,7 @@ class ProductView(View):
    if request.user.is_authenticated:
     totalitem = len(Cart.objects.filter(user=request.user))
    context = {'topwears': topwears, 'bottomwears': bottomwears, 'mobiles': mobiles, 'laptop': laptop,
-              'totalitem': totalitem}
+              'totalitem': totalitem,'static':'static'}
    return render(request, 'app/home.html', context)
 
 

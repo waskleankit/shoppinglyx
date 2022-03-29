@@ -2,7 +2,10 @@
 {% load static %}
 {% block title %}Home{% endblock title %}
 
+
+
 {% block banner_slider %}
+{% if static != "static" %}
 <!--Banner Slider-->
  <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
   <div class="carousel-inner">
@@ -28,10 +31,12 @@
     <span class="visually-hidden">Next</span>
   </a>
 </div>
+{% endif %}
 <!-- End Banner Slider -->
 {% endblock banner_slider %}
 
 {% block livesale %}
+{% if static != "static" %}
 <!-- Live Sale Section -->
 <div class="container">
   <div class="row bg-danger text-center p-5 text-white border-bottom shadow">
@@ -39,9 +44,15 @@
     <span>5% Instant Discount on Axis Bank Credit and Debit Card</span>
     <small class="fw-lighter">Term and Condition Applied (For details visit Bank's official Website)</small>
   </div>
-</div> 
+</div>
+{% endif %}
 <!-- End Live Sale Section -->
 {% endblock livesale %}
+
+
+
+
+
 
 {% block main-content %}
 <!-- 1st Product Slider -->
@@ -68,6 +79,8 @@
 </div>
 <!-- End 1st Product Slider -->
 
+
+{% if static != "static" %}
 <!-- Payment Info Section -->
 <div class="container my-5">
  <div class="row">
@@ -102,6 +115,8 @@
  </div>
 </div>
 <!-- End Payment Info Section -->
+{% endif %}
+
 
 <!-- 2nd Product Slider -->
 <div class="mx-3">

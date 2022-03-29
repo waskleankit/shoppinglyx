@@ -30,6 +30,33 @@ class ProductView(View):
   context = {'topwears': topwears,'bottomwears' : bottomwears,'mobiles' : mobiles,'laptop': laptop,'totalitem':totalitem}
   return render(request,'app/home.html',context)
 
+ def post(self,request):
+  print("post running")
+  print("post running")
+  print("post running")
+  if request.POST['sv'] != None:
+   print("if request.POST['sv'] != None:")
+   print("if request.POST['sv'] != None:")
+   print("if request.POST['sv'] != None:")
+   tag = request.POST['sv']
+   topwears = Product.objects.filter(Q(Q(brand__contains=tag) | Q(title__contains=tag) | Q(description__contains=tag)) & Q(category='TW'))
+   bottomwears = Product.objects.filter(Q(Q(brand__contains=tag) | Q(title__contains=tag) | Q(description__contains=tag)) & Q(category='BW'))
+   mobiles = Product.objects.filter(Q(Q(brand__contains=tag) | Q(title__contains=tag) | Q(description__contains=tag)) & Q(category='M'))
+   laptop = Product.objects.filter(Q(Q(brand__contains=tag) | Q(title__contains=tag) | Q(description__contains=tag)) & Q(category='L'))
+   print(topwear)
+   print(bottomwears)
+   print(mobiles)
+   print(laptop)
+    # posts = Posts.objects.filter(user_id=userid).all()
+   # .paginate(page=page, per_page=ROWS_PER_PAGE)
+   totalitem = 0
+   if request.user.is_authenticated:
+    totalitem = len(Cart.objects.filter(user=request.user))
+   context = {'topwears': topwears, 'bottomwears': bottomwears, 'mobiles': mobiles, 'laptop': laptop,
+              'totalitem': totalitem}
+   return render(request, 'app/home.html', context)
+
+
 # def product_detail(request):
 #  return render(request, 'app/productdetail.html')
 class ProductDetailView(View):

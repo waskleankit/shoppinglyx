@@ -31,13 +31,7 @@ class ProductView(View):
   return render(request,'app/home.html',context)
 
  def post(self,request):
-  print("post running")
-  print("post running")
-  print("post running")
   if request.POST['sv'] != None:
-   print("if request.POST['sv'] != None:")
-   print("if request.POST['sv'] != None:")
-   print("if request.POST['sv'] != None:")
    tag = request.POST['sv']
    topwears = Product.objects.filter(Q(Q(brand__contains=tag) | Q(title__contains=tag) | Q(description__contains=tag)) & Q(category='TW'))
    bottomwears = Product.objects.filter(Q(Q(brand__contains=tag) | Q(title__contains=tag) | Q(description__contains=tag)) & Q(category='BW'))

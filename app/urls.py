@@ -54,5 +54,7 @@ urlpatterns = [
     path('product_api/products/',views.product_json_list),
     path('product_api/products/<int:pk>/', views.product_json_detail),
     path('cart_api/carts/',views.cart_json_list),
+    path('cart_api/carts/<int:pk>/', views.cart_json_detail),
     path('order_placed_api/orders/',views.order_placed_json_list),
+    path('order_placed_api/orders/<int:pk>/', views.order_placed_json_detail),
 ] + static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

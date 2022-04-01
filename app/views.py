@@ -414,6 +414,7 @@ def product_json_detail(request,pk):
             return JsonResponse(serializer.data)
         return JsonResponse(serializer.errors,status=400)
 
+
     if request.method == 'DELETE':
         product.delete()
         return HttpResponse(status=204)
@@ -435,29 +436,29 @@ def cart_json_list(request):
             return JsonResponse(serializer.data,status=201)
         return JsonResponse(serializer.error, status=400)
 
-#
-# @csrf_exempt
-# def customer_json_detail(request,pk):
-#     """ Retrive ,update or delete a code customer"""
-#     try:
-#         customer = Customer.objects.get(pk=pk)
-#     except Customer.DoesNotExist:
-#         return HttpResponse(status = 404)
-#     if request.method == 'GET':
-#         serializer = CustomerSerializers(customer)
-#         return JsonResponse(serializer.data)
-#
-#     if request.method == 'PUT':
-#         data = JSONParser().parse(request)
-#         serializer = CustomerSerializers(customer,data=data)
-#         if serializer.is_valid():
-#             serializer.save()
-#             return JsonResponse(serializer.data)
-#         return JsonResponse(serializer.errors,status=400)
-#
-#     if request.method == 'DELETE':
-#         customer.delete()
-#         return HttpResponse(status=204)
+
+@csrf_exempt
+def cart_json_detail(request,pk):
+    """ Retrive ,update or delete a code customer"""
+    try:
+        cart = Cart.objects.get(pk=pk)
+    except Cart.DoesNotExist:
+        return HttpResponse(status = 404)
+    if request.method == 'GET':
+        serializer = CartSerializers(cart)
+        return JsonResponse(serializer.data)
+
+    if request.method == 'PUT':
+        data = JSONParser().parse(request)
+        serializer = CustomerSerializers(cart,data=data)
+        if serializer.is_valid():
+            serializer.save()
+            return JsonResponse(serializer.data)
+        return JsonResponse(serializer.errors,status=400)
+
+    if request.method == 'DELETE':
+        cart.delete()
+        return HttpResponse(status=204)
 
 
 @csrf_exempt
@@ -476,26 +477,26 @@ def order_placed_json_list(request):
             return JsonResponse(serializer.data,status=201)
         return JsonResponse(serializer.error, status=400)
 
-#
-# @csrf_exempt
-# def customer_json_detail(request,pk):
-#     """ Retrive ,update or delete a code customer"""
-#     try:
-#         customer = Customer.objects.get(pk=pk)
-#     except Customer.DoesNotExist:
-#         return HttpResponse(status = 404)
-#     if request.method == 'GET':
-#         serializer = CustomerSerializers(customer)
-#         return JsonResponse(serializer.data)
-#
-#     if request.method == 'PUT':
-#         data = JSONParser().parse(request)
-#         serializer = CustomerSerializers(customer,data=data)
-#         if serializer.is_valid():
-#             serializer.save()
-#             return JsonResponse(serializer.data)
-#         return JsonResponse(serializer.errors,status=400)
-#
-#     if request.method == 'DELETE':
-#         customer.delete()
-#         return HttpResponse(status=204)
+
+@csrf_exempt
+def order_placed_json_detail(request,pk):
+    """ Retrive ,update or delete a code customer"""
+    try:
+        order = OrderPlaced.objects.get(pk=pk)
+    except OrderPlaced.DoesNotExist:
+        return HttpResponse(status = 404)
+    if request.method == 'GET':
+        serializer = OrderPlacedSerializers(order)
+        return JsonResponse(serializer.data)
+
+    if request.method == 'PUT':
+        data = JSONParser().parse(request)
+        serializer = OrderPlacedSerializers(order,data=data)
+        if serializer.is_valid():
+            serializer.save()
+            return JsonResponse(serializer.data)
+        return JsonResponse(serializer.errors,status=400)
+
+    if request.method == 'DELETE':
+        order.delete()
+        return HttpResponse(status=204)

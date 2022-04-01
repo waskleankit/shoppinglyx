@@ -49,5 +49,8 @@ urlpatterns = [
     path('password-reset-confirm/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(template_name="app/password_reset_confirm.html",form_class=MySetPasswordForm), name='password_reset_confirm'),
     path('password-reset/done/', auth_views.PasswordResetDoneView.as_view(template_name="app/password_reset_done.html"), name='password_reset_done'),
     path('password-reset-complete/', auth_views.PasswordResetCompleteView.as_view(template_name="app/password_reset_complete.html"), name='password_reset_complete'),
-
+    path('customer_api/customers/',views.customer_json_list),
+    path('product_api/products/',views.product_json_list),
+    path('cart_api/carts/',views.cart_json_list),
+    path('order_placed_api/orders/',views.order_placed_json_list),
 ] + static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

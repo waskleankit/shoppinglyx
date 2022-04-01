@@ -329,3 +329,173 @@ class ProfileView(View):
    totalitem = len(Cart.objects.filter(user=request.user))
   return redirect("home")
 
+
+# # rest-framework
+# # django -rest-framework
+from django.shortcuts import render
+from django.http import HttpResponse,JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+from rest_framework.parsers import JSONParser
+from .models import Customer,Product,Cart,OrderPlaced
+from .serializers import CustomerSerializers,ProductSerializers,OrderPlacedSerializers,CartSerializers
+@csrf_exempt
+def customer_json_list(request):
+    """ List all code snippets,or create a new snippet"""
+    if request.method == 'GET':
+        customers = Customer.objects.all()
+        serializer = CustomerSerializers(customers,many=True)
+        return JsonResponse(serializer.data,safe=False)
+
+    elif request.method =='POST':
+        data = JSONParser().parse(request)
+        serializer = CustomerSerializers(data=data)
+        if serializer.is_valid():
+            serializer.save()
+            return JsonResponse(serializer.data,status=201)
+        return JsonResponse(serializer.error, status=400)
+
+#
+# @csrf_exempt
+# def customer_json_detail(request,pk):
+#     """ Retrive ,update or delete a code customer"""
+#     try:
+#         customer = Customer.objects.get(pk=pk)
+#     except Customer.DoesNotExist:
+#         return HttpResponse(status = 404)
+#     if request.method == 'GET':
+#         serializer = CustomerSerializers(customer)
+#         return JsonResponse(serializer.data)
+#
+#     if request.method == 'PUT':
+#         data = JSONParser().parse(request)
+#         serializer = CustomerSerializers(customer,data=data)
+#         if serializer.is_valid():
+#             serializer.save()
+#             return JsonResponse(serializer.data)
+#         return JsonResponse(serializer.errors,status=400)
+#
+#     if request.method == 'DELETE':
+#         customer.delete()
+#         return HttpResponse(status=204)
+
+@csrf_exempt
+def product_json_list(request):
+    """ List all code snippets,or create a new snippet"""
+    if request.method == 'GET':
+        products = Product.objects.all()
+        serializer = ProductSerializers(products,many=True)
+        return JsonResponse(serializer.data,safe=False)
+
+    elif request.method =='POST':
+        data = JSONParser().parse(request)
+        serializer = ProductSerializers(data=data)
+        if serializer.is_valid():
+            serializer.save()
+            return JsonResponse(serializer.data,status=201)
+        return JsonResponse(serializer.error, status=400)
+
+#
+# @csrf_exempt
+# def customer_json_detail(request,pk):
+#     """ Retrive ,update or delete a code customer"""
+#     try:
+#         customer = Customer.objects.get(pk=pk)
+#     except Customer.DoesNotExist:
+#         return HttpResponse(status = 404)
+#     if request.method == 'GET':
+#         serializer = CustomerSerializers(customer)
+#         return JsonResponse(serializer.data)
+#
+#     if request.method == 'PUT':
+#         data = JSONParser().parse(request)
+#         serializer = CustomerSerializers(customer,data=data)
+#         if serializer.is_valid():
+#             serializer.save()
+#             return JsonResponse(serializer.data)
+#         return JsonResponse(serializer.errors,status=400)
+#
+#     if request.method == 'DELETE':
+#         customer.delete()
+#         return HttpResponse(status=204)
+
+
+@csrf_exempt
+def cart_json_list(request):
+    """ List all code snippets,or create a new snippet"""
+    if request.method == 'GET':
+        carts = Cart.objects.all()
+        serializer = CartSerializers(carts,many=True)
+        return JsonResponse(serializer.data,safe=False)
+
+    elif request.method =='POST':
+        data = JSONParser().parse(request)
+        serializer = CartSerializers(data=data)
+        if serializer.is_valid():
+            serializer.save()
+            return JsonResponse(serializer.data,status=201)
+        return JsonResponse(serializer.error, status=400)
+
+#
+# @csrf_exempt
+# def customer_json_detail(request,pk):
+#     """ Retrive ,update or delete a code customer"""
+#     try:
+#         customer = Customer.objects.get(pk=pk)
+#     except Customer.DoesNotExist:
+#         return HttpResponse(status = 404)
+#     if request.method == 'GET':
+#         serializer = CustomerSerializers(customer)
+#         return JsonResponse(serializer.data)
+#
+#     if request.method == 'PUT':
+#         data = JSONParser().parse(request)
+#         serializer = CustomerSerializers(customer,data=data)
+#         if serializer.is_valid():
+#             serializer.save()
+#             return JsonResponse(serializer.data)
+#         return JsonResponse(serializer.errors,status=400)
+#
+#     if request.method == 'DELETE':
+#         customer.delete()
+#         return HttpResponse(status=204)
+
+
+@csrf_exempt
+def order_placed_json_list(request):
+    """ List all code snippets,or create a new snippet"""
+    if request.method == 'GET':
+        orders = OrderPlaced.objects.all()
+        serializer = OrderPlacedSerializers(orders,many=True)
+        return JsonResponse(serializer.data,safe=False)
+
+    elif request.method =='POST':
+        data = JSONParser().parse(request)
+        serializer = OrderPlacedSerializers(data=data)
+        if serializer.is_valid():
+            serializer.save()
+            return JsonResponse(serializer.data,status=201)
+        return JsonResponse(serializer.error, status=400)
+
+#
+# @csrf_exempt
+# def customer_json_detail(request,pk):
+#     """ Retrive ,update or delete a code customer"""
+#     try:
+#         customer = Customer.objects.get(pk=pk)
+#     except Customer.DoesNotExist:
+#         return HttpResponse(status = 404)
+#     if request.method == 'GET':
+#         serializer = CustomerSerializers(customer)
+#         return JsonResponse(serializer.data)
+#
+#     if request.method == 'PUT':
+#         data = JSONParser().parse(request)
+#         serializer = CustomerSerializers(customer,data=data)
+#         if serializer.is_valid():
+#             serializer.save()
+#             return JsonResponse(serializer.data)
+#         return JsonResponse(serializer.errors,status=400)
+#
+#     if request.method == 'DELETE':
+#         customer.delete()
+#         return HttpResponse(status=204)

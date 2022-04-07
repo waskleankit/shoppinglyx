@@ -26,7 +26,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECRET_KEY = os.environ['SECRET_KEY']
 SECRET_KEY = ["django-insecure-&zja@0$t==cold+x4m%&ob)!vcm!i(3!-n3$j4p5d2rrgz!l3h"]
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 # DEBUG = False
 ALLOWED_HOSTS = ["waskleshoppinglyx.herokuapp.com","localhost"]
 # ALLOWED_HOSTS = ["*"]
@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'app',
-    'rest_framework',
 ]
 
 X_FRAME_OPTIONS='SAMEORIGIN'
@@ -182,8 +181,3 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 
 
-# SESSION_ENGINE = "django.contrib.sessions.backends.db"
-REST_FRAMEWORK = {
-    'DEFAULT_PAGINATION_CLASS':'rest_framework.pagination.PageNumberPagination',
-    'PAGE_SIZE':10
-}
